@@ -19,8 +19,8 @@ In the root of the project, run `npm install` to install all modules listed as d
 │   │   └── home.screen.js
 │   │   └── profile.screen.js
 │   └── styles/
-│   │   └── home.screen.style.js
-│   │   └── profile.screen.style.js 
+│   │   └── home.screen.styles.js
+│   │   └── profile.screen.styles.js 
 │   └── App.js
 │   └── index.js  
 ├── .gitignore 
@@ -33,7 +33,7 @@ Each screen is located in the `src/screens/` directory and named like this: `{na
 
 The stylesheet for each screen is located in the `src/styles/` directory and named like this: `{name}.screen.styles.js`. 
 
-The `src/components` directory will contain any shared components that can be reused between screens, such as headers and tabs.
+The `src/components/` directory will contain any shared components that can be reused between screens, such as headers and tabs.
 
 ## Running the application
 
