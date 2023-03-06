@@ -1,3 +1,4 @@
+import { CreateRecipeScreen } from "./screens/create-recipe.screen";
 import { HomeScreen } from "./screens/home.screen";
 import { NavigationContainer } from '@react-navigation/native';
 import { ProfileScreen } from "./screens/profile.screen";
@@ -12,6 +13,7 @@ export const App = () => {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="CreateRecipe" component={CreateRecipeScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
