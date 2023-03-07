@@ -44,6 +44,7 @@ export const HomeScreen = ({ navigation }) => {
         </Link>
         .
       </Text>
+      <Button onPress={() => navigation.navigate('CreateRecipe')} title="Create recipe" />
       <Button onPress={() => navigation.navigate('Profile')} title="Go to profile" />
     </View>
   );
