@@ -1,7 +1,7 @@
-import { CreateRecipeScreen } from "./screens/create-recipe.screen";
-import { HomeScreen } from "./screens/home.screen";
+import { CreateRecipeScreen } from "./src/screens/create-recipe.screen";
+import { HomeScreen } from "./src/screens/home.screen";
 import { NavigationContainer } from '@react-navigation/native';
-import { ProfileScreen } from "./screens/profile.screen";
+import { ProfileScreen } from "./src/screens/profile.screen";
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
