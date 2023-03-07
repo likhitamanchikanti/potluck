@@ -18,12 +18,17 @@ In the root of the project, run `npm install` to install all modules listed as d
 │   └── screens/
 │   │   └── home.screen.js
 │   │   └── profile.screen.js
+│   │   └── ...
 │   └── styles/
 │   │   └── home.screen.styles.js
 │   │   └── profile.screen.styles.js 
-│   └── App.js
-│   └── index.js  
+│   │   └── ...
+├── web/
+│   └── webpack.config.js
 ├── .gitignore 
+├── App.js
+├── babel.config.js
+├── index.web.js  
 ├── package-lock.json
 ├── package.json
 ├── README.md
@@ -37,7 +42,7 @@ The `src/components/` directory will contain any shared components that can be r
 
 ## Running the application
 
-In the root of the project, run `npm start`.
+In the root of the project, run `npm run web`.
 
 ## Contributing
 
