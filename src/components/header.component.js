@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+// import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import React from "react";
 import {color} from '../config/global.styles.config';
 import { useNavigation } from '@react-navigation/native';
@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
 export const HeaderComponent = () => {
     const logo = require('../assets/logo.png');
     const pfp = require('../assets/mock-profile-picture.jpg');
+    const createIcon = require('../assets/create-icon.png')
     const navigation = useNavigation();
 
     return (
@@ -43,7 +44,7 @@ export const HeaderComponent = () => {
             <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center',}}>
                 <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 20}}>
                         <View style={{justifyContent: 'center', alignItems: 'center', }}>
-                            <Icon name="circle" size={50} color='transparent'/>
+                            {/* <Icon name="circle" size={50} color='transparent'/> */}
                         </View>
                 </View>
             </View>
@@ -61,9 +62,10 @@ export const HeaderComponent = () => {
                 <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 20}}>
                     <TouchableOpacity onPress={() => navigation.navigate('CreateRecipe')}>
                         <View style={{justifyContent: 'center', alignItems: 'center', }}>
-                            <Icon name="circle" size={50} color={color.blue}/>
+                            <Image source={createIcon} style={styles.pfp}/>
+                            {/* <Icon name="circle" size={50} color={color.blue}/> */}
                             <View style={{position: 'absolute',}}>
-                                <Icon name="plus" size={30} color={color.white} />
+                                {/* <Icon name="plus" size={30} color={color.white} /> */}
                             </View>
                         </View>
                     </TouchableOpacity>

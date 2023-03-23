@@ -9,9 +9,10 @@ export const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <HeaderComponent/>
-      <View style={styles.app}>
-        <Button onPress={() => navigation.navigate('CreateRecipe')} title="Create recipe" />
-        <Button onPress={() => navigation.navigate('Profile')} title="Go to profile" />
+      <View style={[styles.app, {paddingVertical: 100}]}>
+        <Text style={{fontWeight: "bold", fontSize: "1.25rem",}}>
+          Get cooking! Recipes will show up here.
+        </Text>
       </View>
     </ScrollView>
   );

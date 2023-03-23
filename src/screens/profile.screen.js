@@ -52,9 +52,6 @@ export const ProfileScreen = ({ navigation }) => {
             ))}
           </View>
         </View>
-        <View style={styles.buttons}>
-          <Button onPress={() => navigation.navigate('Home')} title="Go home" />
-        </View>
       </View>
     </ScrollView>
   );

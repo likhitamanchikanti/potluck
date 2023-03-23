@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export const createRecipeScreenStyles = StyleSheet.create({
     container: {
         flex: 1,
+        marginHorizontal: "auto",
     },
     content: {
         // width: '60%',

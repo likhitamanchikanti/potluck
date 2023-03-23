@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HeaderComponent } from "../components/header.component";
 import Select from "react-select";
+// import { TouchableOpacity } from "react-native-web";
 import {launchImageLibrary} from 'react-native-image-picker';
 import {createRecipeScreenStyles as styles} from '../styles/create-recipe.screen.styles';
 
@@ -12,7 +13,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
     const [recipeDescription, setRecipeDescription] = useState('');
     const [prepTime, setPrepTime] = useState('');
     const [cookTime, setCookTime] = useState('');
-    const [diet, setDiet] = useState([
+    const [diet, setDiet] = useState([]);
+    const [dietOptions, setDietOptions] = useState([
         { value: 'vegetarian', label: 'Vegetarian' },
         { value: 'vegan', label: 'Vegan' },
         { value: 'glutenFree', label: 'Gluten Free' },
@@ -80,29 +82,6 @@ export const CreateRecipeScreen = ({ navigation }) => {
     };
 
     const onSubmit = async () => {
-        // try {
-        //     await AsyncStorage.multiSet([['recipe title', recipeTitle]]);
-        //     // await AsyncStorage.setItem(recipeTitle, data);
-        // } catch (e) {
-        //     console.log(e);
-        // }
-        // try {
-        //     setData({
-        //         ...data,
-        //         recipeTitle: recipeTitle,
-        //         recipeDescription: recipeDescription,
-        //         prepTime: prepTime,
-        //         cookTime: cookTime,
-        //         diet: diet,
-        //         ingredients: ingredients,
-        //         steps: steps,
-        //         images: images
-        //     });
-        //     console.log("data: " + JSON.stringify(data));
-        // }
-        // catch (e1) {
-        //     console.log("Error setting recipe data object: " + e1.message);
-        // }
         try {
             const jsonValue = JSON.stringify(data)
             await AsyncStorage.setItem(recipeTitle, jsonValue)
@@ -116,21 +95,9 @@ export const CreateRecipeScreen = ({ navigation }) => {
         setImages(images.filter(img => img.uri !== uri));
     };
 
-    // storeData = async (data) => {
-    //     try {
-    //         const jsonValue = JSON.stringify(data)
-    //         await AsyncStorage.setItem(recipeTitle, jsonValue)
-    //     } catch (e) {
-    //         console.log("Error storing recipe data: " + e.message);
-    //     }
-    // };
-
     const getData = async () => {
         try {
             const jsonValue = await AsyncStorage.getItem(recipeTitle);
-            // if (jsonValue != null) {
-            //     setData(jsonValue);
-            // }
             return jsonValue != null ? JSON.parse(jsonValue) : null;
         } catch(e) {
             console.log("Error getting recipe data: " + e.message);
@@ -142,29 +109,35 @@ export const CreateRecipeScreen = ({ navigation }) => {
             let imageArr = [...images];
             imageArr.push(filePath);
             setImages(imageArr);
-            // handleDetailsChange('images', images);
         }
     });
+
+    // const handleImagesChange = () => {
+    //     if (filePath != '' && filePath != images.at(images.length-1)) {
+    //         let imageArr = [...images];
+    //         imageArr.push(filePath);
+    //         setImages(imageArr);
+    //     }
+    // };
+
+    const handleDietChange = (selectedOption) => {
+        let d = [...diet];
+        diet.push(selectedOption);
+        setDiet(d);
+        console.log('Option selected: ', selectedOption);
+    };
     
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView>
             <HeaderComponent/>
-            <View style={styles.content}>
+            <View style={styles.container}>
                 <Text style={styles.title}>Create Recipe</Text>
                 <View>
                     <TextInput
                         style={styles.input}
                         placeholder="Recipe Title"
                         value={recipeTitle}
-                        // onChangeText={() => {
-                        //     setRecipeTitle
-                        //     setData(data => ({
-                        //         ...data,
-                        //         recipeTitle: recipeTitle
-                        //     }))
-                        // }}
                         onChangeText={setRecipeTitle}
-                        // onChangeText={(text) => handleDetailsChange('recipeTitle', text)}
                         maxLength={80}
                     />
                     <TextInput
@@ -173,7 +146,6 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         placeholder="Recipe Description"
                         value={recipeDescription}
                         onChangeText={setRecipeDescription}
-                        // onChangeText={(text) => handleDetailsChange('recipeDescription', text)}
                     />
                     <View style={styles.buttons}>
                         <TextInput
@@ -181,7 +153,6 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             placeholder="Prep Time"
                             value={prepTime}
                             onChangeText={setPrepTime}
-                            // onChangeText={(text) => handleDetailsChange('prepTime', text)}
                             maxLength={80}
                         />
                         <TextInput
@@ -189,7 +160,6 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             placeholder="Cook Time"
                             value={cookTime}
                             onChangeText={setCookTime}
-                            // onChangeText={(text) => handleDetailsChange('cookTime', text)}
                             maxLength={80}
                         />
                     </View>
@@ -197,12 +167,27 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         <Text>
                             Diet
                         </Text>
+                        {/* <View>
+                            <TouchableOpacity onPress={handleDietChange("Vegetarian")}>
+                                <Text>Vegetarian</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={handleDietChange("Vegan")}>
+                                <Text>Vegan</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={handleDietChange("Gluten Free")}>
+                                <Text>Gluten Free</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={handleDietChange("Pescetarian")}>
+                                <Text>Pescetarian</Text>
+                            </TouchableOpacity>
+                        </View> */}
                         <View style={styles.dietSelect}>
                             <Select 
-                                options={diet} 
+                                options={dietOptions} 
                                 isMulti
                                 isSearchable
-                                onSelect={setDiet}
+                                // onSelect={setDietOptions}
+                                onSelect={handleDietChange}
                             />
                         </View>
                     </View>
@@ -212,7 +197,6 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         placeholder="Ingredients"
                         value={ingredients}
                         onChangeText={setIngredient}
-                        // onChangeText={(text) => handleDetailsChange('ingredients', text)}
                     />
                     <TextInput
                         multiline
@@ -220,7 +204,6 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         placeholder="Steps"
                         value={steps}
                         onChangeText={setStep}
-                        // onChangeText={(text) => handleDetailsChange('steps', text)}
                     />
                 </View>
                 {images.length > 0 ? ( 
@@ -246,15 +229,13 @@ export const CreateRecipeScreen = ({ navigation }) => {
                     <View style={styles.buttons}>
                         <Button onPress={chooseFile} title="Upload photo" />
                     </View>
-                </View>
-                <View style={styles.buttons}>
                     <View style={styles.buttons}>
                         <Button onPress={() => {
                             console.log("title: " + JSON.stringify(recipeTitle));
                             console.log("description: " + JSON.stringify(recipeDescription));
                             console.log("prep: " + JSON.stringify(prepTime));
                             console.log("cook: " + JSON.stringify(cookTime));
-                            console.log("diet: " + JSON.stringify(diet));
+                            console.log("diet: " + diet.map((dietItem) => JSON.stringify(dietItem)));
                             console.log("ingredients: " + JSON.stringify(ingredients));
                             console.log("steps: " + JSON.stringify(steps));
                             console.log("images: " + JSON.stringify(images));
@@ -273,28 +254,35 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             console.log("data: " + JSON.stringify(data));
                             
                             onSubmit
+                            setSubmitted(true);
                             }} 
                             title="Submit"
                         />
                     </View>
-                    <Button onPress={() => navigation.navigate('Home')} title="Go home" />
-                    <Button onPress={() => navigation.navigate('Profile')} title="Go to profile" />
                 </View>
-                <View style={styles.dietSelectContainer}>
-                    <Text>heyyyyy lol</Text>
-                </View>
-                <View style={{flexDirection: 'column'}}>
-                    <Text>
-                        {data.recipeTitle}
-                        {data.recipeDescription}
-                        {data.prepTime}
-                        {data.cookTime}
-                        {/* {data.diet} */}
-                        {data.ingredients}
-                        {data.steps}
-                        {/* {data.images} */}
-                    </Text>
-                </View>
+                {submitted ? (
+                    <View style={{flexDirection: 'column'}}>
+                        <Text>
+                            Recipe Title: {data.recipeTitle}{'\n'}
+                            Recipe Description: {data.recipeDescription}{'\n'}
+                            Prep Time: {data.prepTime}{'\n'}
+                            Cook Time: {data.cookTime}{'\n'}
+                            Diet: {'\n'}
+                        </Text>
+                        {/* {diet.map((dietItem) => {
+                            <Text>
+                                {dietItem}{' '}
+                            </Text>
+                        })} */}
+                        <Text>
+                            Ingredients: {data.ingredients}{'\n'}
+                            Steps: {data.steps}{'\n'}
+                            Images: {data.images.length > 0 ? (<View>{data.images.at(0).width}</View>) : (<View></View>)}
+                        </Text>
+                    </View>
+                ) : (
+                    <View></View>
+                )}
             </View>
         </ScrollView>
     );

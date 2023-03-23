@@ -18,7 +18,7 @@ const babelLoaderConfiguration = {
     path.resolve(appDirectory, 'src'),
     path.resolve(appDirectory, 'node_modules/react-native-uncompiled'),
     path.resolve(appDirectory, 'node_modules/react-native-image-picker'),
-    path.resolve(appDirectory, 'node_modules/react-native-vector-icons'),
+    // path.resolve(appDirectory, 'node_modules/react-native-vector-icons'),
   ],
   use: {
     loader: 'babel-loader',
@@ -54,11 +54,11 @@ const imageLoaderConfiguration = {
   },
 };
 
-const ttfLoaderConfiguration = {
-  test: /\.ttf$/,
-  loader: "url-loader", // or directly file-loader
-  include: path.resolve(appDirectory, "node_modules/react-native-vector-icons"),
-};
+// const ttfLoaderConfiguration = {
+//   test: /\.ttf$/,
+//   loader: "url-loader", // or directly file-loader
+//   include: path.resolve(appDirectory, "node_modules/react-native-vector-icons"),
+// };
 
 module.exports = {
   entry: [
@@ -77,7 +77,11 @@ module.exports = {
   // ...the rest of your config
 
   module: {
-    rules: [babelLoaderConfiguration, imageLoaderConfiguration, ttfLoaderConfiguration],
+    rules: [
+      babelLoaderConfiguration, 
+      imageLoaderConfiguration, 
+      // ttfLoaderConfiguration
+    ],
   },
 
   resolve: {
