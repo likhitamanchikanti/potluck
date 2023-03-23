@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export const profileScreenStyles = StyleSheet.create({
   app: {
     marginHorizontal: "auto",
-    maxWidth: 500
+    flexWrap: true,
   },
   header: {
     padding: 20
@@ -18,12 +18,23 @@ export const profileScreenStyles = StyleSheet.create({
     lineHeight: "1.5em",
     fontSize: "1.125rem",
     marginVertical: "1em",
-    textAlign: "center"
+    marginHorizontal: '3em',
+    textAlign: "center",
   },
   link: {
     color: "#1B95E0"
   },
   code: {
     fontFamily: "monospace, monospace"
-  }
+  },
+  profilePicture: {
+    width: 150,
+    height: 150,
+    borderRadius: 150/2,
+  },
+  buttons: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: 20
+    },
 });
