@@ -2,6 +2,7 @@ import { Button, Image, ScrollView, Text, TextInput, View } from "react-native";
 import React, {useEffect, useState} from "react";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { HeaderComponent } from "../components/header.component";
 import Select from "react-select";
 import {launchImageLibrary} from 'react-native-image-picker';
 import {createRecipeScreenStyles as styles} from '../styles/create-recipe.screen.styles';
@@ -147,6 +148,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
     
     return (
         <ScrollView style={styles.container}>
+            <HeaderComponent/>
             <View style={styles.content}>
                 <Text style={styles.title}>Create Recipe</Text>
                 <View>
