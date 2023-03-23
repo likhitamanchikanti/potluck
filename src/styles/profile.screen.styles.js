@@ -1,17 +1,8 @@
 import {StyleSheet} from 'react-native';
 
 export const profileScreenStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // flexDirection: 'column',
-    // flexWrap: true,
-    marginVertical: "2em",
-    marginHorizontal: "auto",
-    // maxWidth: 500
-  },
   app: {
     marginHorizontal: "auto",
-    maxWidth: 500,
     flexWrap: true,
   },
   header: {

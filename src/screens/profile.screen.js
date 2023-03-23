@@ -1,6 +1,7 @@
 import { Button, Image, Text, View } from "react-native";
 import React, {useState} from "react";
 
+import { HeaderComponent } from "../components/header.component";
 import { ScrollView } from "react-native-web";
 import {profileScreenStyles as styles} from '../styles/profile.screen.styles';
 
@@ -11,8 +12,9 @@ export const ProfileScreen = ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);
 
   return (
-    <ScrollView style={styles.container}>
-      <View>
+    <ScrollView>
+      <HeaderComponent/>
+      <View style={styles.app}>
         <View style={{flexDirection: 'row'}}>
           <Image
             source={profilePicture}
