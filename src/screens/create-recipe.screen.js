@@ -7,6 +7,7 @@ import Select from "react-select";
 // import { TouchableOpacity } from "react-native-web";
 import {launchImageLibrary} from 'react-native-image-picker';
 import {createRecipeScreenStyles as styles} from '../styles/create-recipe.screen.styles';
+import axios from 'axios';
 
 export const CreateRecipeScreen = ({ navigation }) => { 
     const [recipeTitle, setRecipeTitle] = useState('');
@@ -126,6 +127,17 @@ export const CreateRecipeScreen = ({ navigation }) => {
         setDiet(d);
         console.log('Option selected: ', selectedOption);
     };
+
+    addRecipe = () => {
+        const recipe = {
+            recipeTitle,
+            cookTime
+        }
+
+        axios.post('http://localhost:8080/', recipe)
+        .then(function (response) { console.log(response); })
+        .catch(function (error) { console.log(error); });
+    }
     
     return (
         <ScrollView>
@@ -231,6 +243,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
                     </View>
                     <View style={styles.buttons}>
                         <Button onPress={() => {
+                            addRecipe();
+
                             console.log("title: " + JSON.stringify(recipeTitle));
                             console.log("description: " + JSON.stringify(recipeDescription));
                             console.log("prep: " + JSON.stringify(prepTime));
