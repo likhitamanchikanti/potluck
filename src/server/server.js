@@ -25,7 +25,18 @@ con.connect(function(err) {
 
 
 app.get('/',(req,res)=>{
-  res.json('OK');
+  con.query("SELECT * FROM recipe", function(err,result){
+    if(err){
+      throw err;
+    } 
+
+    else{
+      console.log(result);
+      res.send(result)
+    }
+    
+  });
+
 })
 
 app.post('/', express.json(), (req,res)=>{
