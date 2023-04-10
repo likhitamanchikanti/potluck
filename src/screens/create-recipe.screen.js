@@ -131,18 +131,6 @@ export const CreateRecipeScreen = ({ navigation }) => {
 
     addRecipe = () => {
         const recipe = {
-            //recipeTitle,
-            //cookTime
-            // RecipeTitle,
-            // UserID,
-            // RecipeDescription,
-            // Preptime,
-            // Cooktime,
-            // Diet,
-            // Ingredients,
-            // Steps,
-            // Image,
-            // NumLikes
             recipeTitle,
             userID,
             recipeDescription,
@@ -272,7 +260,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                     <View style={styles.buttons}>
                         <Button onPress={() => {
                             addRecipe();
-
+                            console.log("userID: " + JSON.stringify(userID));
                             console.log("title: " + JSON.stringify(recipeTitle));
                             console.log("description: " + JSON.stringify(recipeDescription));
                             console.log("prep: " + JSON.stringify(prepTime));
