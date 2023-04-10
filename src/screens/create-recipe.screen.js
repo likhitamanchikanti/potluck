@@ -10,6 +10,7 @@ import {createRecipeScreenStyles as styles} from '../styles/create-recipe.screen
 import axios from 'axios';
 
 export const CreateRecipeScreen = ({ navigation }) => { 
+    const [userID, setUserID] = useState('');
     const [recipeTitle, setRecipeTitle] = useState('');
     const [recipeDescription, setRecipeDescription] = useState('');
     const [prepTime, setPrepTime] = useState('');
@@ -130,8 +131,28 @@ export const CreateRecipeScreen = ({ navigation }) => {
 
     addRecipe = () => {
         const recipe = {
+            //recipeTitle,
+            //cookTime
+            // RecipeTitle,
+            // UserID,
+            // RecipeDescription,
+            // Preptime,
+            // Cooktime,
+            // Diet,
+            // Ingredients,
+            // Steps,
+            // Image,
+            // NumLikes
             recipeTitle,
-            cookTime
+            userID,
+            recipeDescription,
+            prepTime,
+            cookTime,
+            diet,
+            ingredients,
+            steps,
+            images,
+            numLikes
         }
 
         axios.post('http://localhost:8080/', recipe)
@@ -145,6 +166,13 @@ export const CreateRecipeScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <Text style={styles.title}>Create Recipe</Text>
                 <View>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="User ID"
+                        value={userID}
+                        onChangeText={setUserID}
+                        maxLength={80}
+                    />
                     <TextInput
                         style={styles.input}
                         placeholder="Recipe Title"
