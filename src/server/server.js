@@ -25,7 +25,7 @@ con.connect(function(err) {
 
 
 app.get('/',(req,res)=>{
-  con.query("SELECT * FROM recipe", function(err,result){
+  con.query("SELECT * FROM Recipes", function(err,result){
     if(err){
       throw err;
     } 
@@ -40,11 +40,12 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/', express.json(), (req,res)=>{
-var records = [[req.body.recipeTitle,req.body.cookTime]];
+var records = [[req.body.userID,req.body.recipeTitle,req.body.recipeDescription,req.body.prepTime,req.body.cookTime,null,req.body.ingredients,req.body.steps,null,'0']];
 
+console.log(records)
 if(records[0][0]!=null)
 {
-  con.query("INSERT into recipe (title,cooktime) VALUES ?",[records],function(err,res,fields){
+  con.query("INSERT into Recipes (UserID,RecipeTitle,RecipeDescription,PrepTime,CookTime,Diet,Ingredients,Steps,Image,NumLikes) VALUES ?",[records],function(err,res,fields){
     if(err) throw err;
     console.log(res);
   });
