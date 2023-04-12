@@ -25,6 +25,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
     const [ingredients, setIngredient] = useState('');
     const [steps, setStep] = useState('');
     const [images, setImages] = useState([]);
+    const [imageLink, setImageLink] = useState('');
 
     
     const [data, setData] = useState({ 
@@ -36,7 +37,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
         diet: [],
         ingredients: '',
         steps: '',
-        images: []
+        images: [],
+        imageLink: ''
     });
 
     const handleDetailsChange = (field, value) => {
@@ -141,7 +143,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
             diet,
             ingredients,
             steps,
-            images
+            images,
+            imageLink
         }
 
         axios.post('http://localhost:8080/', recipe)
@@ -234,6 +237,14 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         value={steps}
                         onChangeText={setStep}
                     />
+
+                    <TextInput
+                        multiline
+                        style={styles.inputMultiline}
+                        placeholder="Image Link"
+                        value={imageLink}
+                        onChangeText={setImageLink}
+                        />
                 </View>
                 {images.length > 0 ? ( 
                     <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}> 
@@ -271,6 +282,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             console.log("ingredients: " + JSON.stringify(ingredients));
                             console.log("steps: " + JSON.stringify(steps));
                             console.log("images: " + JSON.stringify(images));
+                            console.log("image link: " + JSON.stringify(imageLink));
 
                             setData({
                                 ...data,
@@ -282,7 +294,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
                                 diet: diet,
                                 ingredients: ingredients,
                                 steps: steps,
-                                images: images
+                                images: images,
+                                imageLink: imageLink
                             });
                             console.log("data: " + JSON.stringify(data));
                             
@@ -301,7 +314,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             Recipe Description: {data.recipeDescription}{'\n'}
                             Prep Time: {data.prepTime}{'\n'}
                             Cook Time: {data.cookTime}{'\n'}
-                            Diet: {'\n'}
+                            Diet: {data.diet}{'\n'}
+
                         </Text>
                         {/* {diet.map((dietItem) => {
                             <Text>
@@ -311,6 +325,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         <Text>
                             Ingredients: {data.ingredients}{'\n'}
                             Steps: {data.steps}{'\n'}
+                            Image Link: {data.imageLink}{'\n'}
                             Images: {data.images.length > 0 ? (<View>{data.images.at(0).width}</View>) : (<View></View>)}
                         </Text>
                     </View>

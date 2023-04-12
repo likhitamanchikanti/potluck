@@ -50,9 +50,9 @@ const getRecipes = () => {
               Prep Time: {recipe.PrepTime}{'\n'}
               Cook Time: {recipe.CookTime}{'\n'}
               Diet: {recipe.Diet}{'\n'}
-              Ingredients: {recipe.Ingredients}{'\n'}
-              Steps: {recipe.Steps}{'\n'}
-              Images: {recipe.Image}{'\n'}{'\n'}
+              Ingredients: {'\n'} {recipe.Ingredients}{'\n'}
+              Steps: {'\n'} {recipe.Steps}{'\n'}
+              <img src={recipe.Image}></img>{'\n'}
             </Text> 
           </div>
       ))}
