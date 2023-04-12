@@ -91,6 +91,9 @@ export const HeaderComponent = () => {
                     <TouchableOpacity>
                         <Text style={styles.tabLink}>Low Calorie</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Testing')}>
+                        <Text style={styles.tabLink}>Testing</Text>
+                    </TouchableOpacity>
                     <TouchableOpacity>
                         <Text style={styles.tabLink}>Budget Friendly</Text>
                     </TouchableOpacity>
