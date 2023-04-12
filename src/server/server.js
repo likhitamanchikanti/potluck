@@ -40,7 +40,7 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/', express.json(), (req,res)=>{
-var records = [[req.body.userID,req.body.recipeTitle,req.body.recipeDescription,req.body.prepTime,req.body.cookTime,null,req.body.ingredients,req.body.steps,req.body.imageLink,'0']];
+var records = [[req.body.userID,req.body.recipeTitle,req.body.recipeDescription,req.body.prepTime,req.body.cookTime,req.body.diet,req.body.ingredients,req.body.steps,req.body.imageLink,'0']];
 
 console.log(records)
 if(records[0][0]!=null)

@@ -44,15 +44,17 @@ const getRecipes = () => {
           // the recipe title should def not be a key, just leaving this as a placeholder
           <div className='card'> 
             <Text>
-              UserID: {recipe.UserID}{'\n'}
-              Recipe Title: {recipe.RecipeTitle}{'\n'}
-              Recipe Description: {recipe.RecipeDescription}{'\n'}
-              Prep Time: {recipe.PrepTime}{'\n'}
-              Cook Time: {recipe.CookTime}{'\n'}
-              Diet: {recipe.Diet}{'\n'}
-              Ingredients: {'\n'} {recipe.Ingredients}{'\n'}
-              Steps: {'\n'} {recipe.Steps}{'\n'}
-              <img src={recipe.Image}></img>{'\n'}
+              UserID: {recipe.UserID}{'\n'}{'\n'}
+              Recipe Title: {recipe.RecipeTitle}{'\n'}{'\n'}
+              Recipe Description: {recipe.RecipeDescription}{'\n'}{'\n'}
+              Prep Time: {recipe.PrepTime}{'\n'}{'\n'}
+              Cook Time: {recipe.CookTime}{'\n'}{'\n'}
+              Diet: {recipe.Diet}{'\n'}{'\n'}
+              Ingredients: {'\n'} 
+              {recipe.Ingredients}{'\n'}{'\n'}
+              Steps: {'\n'} 
+              {recipe.Steps}{'\n'}{'\n'}
+              <img src={recipe.Image}></img>{'\n'}{'\n'}
             </Text> 
           </div>
       ))}
