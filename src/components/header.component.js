@@ -88,15 +88,15 @@ export const HeaderComponent = () => {
                     <TouchableOpacity>
                         <Text style={styles.tabLink}>Quick and Easy</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    {/* <TouchableOpacity>
                         <Text style={styles.tabLink}>Low Calorie</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => navigation.navigate('Testing')}>
                         <Text style={styles.tabLink}>Testing</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    {/* <TouchableOpacity>
                         <Text style={styles.tabLink}>Budget Friendly</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity>
                         <Text style={styles.tabLink}>Seasonal Ingredients</Text>
                     </TouchableOpacity>

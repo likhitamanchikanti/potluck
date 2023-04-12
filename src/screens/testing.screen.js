@@ -1,10 +1,13 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
+
+import { HeaderComponent } from '../components/header.component';
 import { ScrollView } from 'react-native-web';
 import { TestingScreenStyles as styles } from '../styles/testing.screen.styles';
 
 export const TestingScreen = () => {
   return (
     <ScrollView>
+      <HeaderComponent/>
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
           <Image

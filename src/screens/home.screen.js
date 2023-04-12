@@ -14,8 +14,8 @@ export const HomeScreen = ({ navigation }) => {
 
 const [recipes, setRecipes] = useState([]);
 
-const [minCook, setMinCook] = useState(0);
-const [maxCook, setMaxCook] = useState(100);
+const [minCook, setMinCook] = useState();
+const [maxCook, setMaxCook] = useState();
 
 const [filteredRecipes, setFilteredRecipes] = useState([]);
 
@@ -60,7 +60,9 @@ const filterRecipes = () => {
       <View style={{padding: '30px'}}/>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <View style={{flexDirection: 'column'}}>
-            {filteredRecipes.map((recipe) => (
+            {!maxCook && !minCook? (
+          <View style={{flexDirection: 'column'}}>
+            {recipes.map((recipe) => (
               <div className='card' key={recipe.title}> 
               {/* TODO: placeholder navigation: should navigate to the expanded recipe screen */}
                 <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
@@ -84,6 +86,91 @@ const filterRecipes = () => {
               </div>
             ))}
           </View>
+          // <RecipeList feed={recipes}/>
+        ) : !maxCook? (
+          <View style={{flexDirection: 'column'}}>
+            {recipes.filter((r) => Number(r.cooktime) >= minCook).map(({title, cooktime}) => ({title, cooktime})).map((recipe) => (
+              <div className='card' key={recipe.title}> 
+              {/* TODO: placeholder navigation: should navigate to the expanded recipe screen */}
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                  <View style={styles.tileContainer}>
+                    <View style={styles.tile}>
+                      <Text style={[styles.title, {textAlign: 'left', marginVertical: "0em"}]}>
+                        {/* the recipe title should def not be a key, just leaving this as a placeholder */}
+                        {recipe.title}{'\n'}
+                      </Text>
+                      <View style={{flexDirection: 'row'}}>
+                        <Text style={{fontWeight: 'bold'}}>
+                          Cook Time:{' '}
+                        </Text>
+                        <Text>
+                          {recipe.cooktime}{'\n'}{'\n'}
+                        </Text> 
+                      </View>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </div>
+            ))}
+          </View>
+          // <RecipeList feed={recipes.filter((r) => Number(r.cooktime) >= minCook).map(({title, cooktime}) => ({title, cooktime}))}/>
+        ) : !minCook? (
+          <View style={{flexDirection: 'column'}}>
+            {recipes.filter((r) => Number(r.cooktime) <= maxCook).map(({title, cooktime}) => ({title, cooktime})).map((recipe) => (
+              <div className='card' key={recipe.title}> 
+              {/* TODO: placeholder navigation: should navigate to the expanded recipe screen */}
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                  <View style={styles.tileContainer}>
+                    <View style={styles.tile}>
+                      <Text style={[styles.title, {textAlign: 'left', marginVertical: "0em"}]}>
+                        {/* the recipe title should def not be a key, just leaving this as a placeholder */}
+                        {recipe.title}{'\n'}
+                      </Text>
+                      <View style={{flexDirection: 'row'}}>
+                        <Text style={{fontWeight: 'bold'}}>
+                          Cook Time:{' '}
+                        </Text>
+                        <Text>
+                          {recipe.cooktime}{'\n'}{'\n'}
+                        </Text> 
+                      </View>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </div>
+            ))}
+          </View>
+          // <RecipeList feed={recipes.filter((r) => Number(r.cooktime) <= maxCook).map(({title, cooktime}) => ({title, cooktime}))}/>
+        ) : (
+          <View style={{flexDirection: 'column'}}>
+            {recipes.filter((r) => Number(r.cooktime) >= minCook && Number(r.cooktime) <= maxCook).map(({title, cooktime}) => ({title, cooktime})).map((recipe) => (
+              <div className='card' key={recipe.title}> 
+              {/* TODO: placeholder navigation: should navigate to the expanded recipe screen */}
+                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                  <View style={styles.tileContainer}>
+                    <View style={styles.tile}>
+                      <Text style={[styles.title, {textAlign: 'left', marginVertical: "0em"}]}>
+                        {/* the recipe title should def not be a key, just leaving this as a placeholder */}
+                        {recipe.title}{'\n'}
+                      </Text>
+                      <View style={{flexDirection: 'row'}}>
+                        <Text style={{fontWeight: 'bold'}}>
+                          Cook Time:{' '}
+                        </Text>
+                        <Text>
+                          {recipe.cooktime}{'\n'}{'\n'}
+                        </Text> 
+                      </View>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </div>
+            ))}
+          </View>
+          // <RecipeList feed={recipes.filter((r) => Number(r.cooktime) >= minCook && Number(r.cooktime) <= maxCook).map(({title, cooktime}) => ({title, cooktime}))}/>
+        )}
+
+          </View>
         <View style={{paddingLeft: 50}}/>
         <View style={{flexDirection: 'column'}}>
           <Text style={[styles.title, {textAlign: 'left', marginVertical: 0, paddingBottom: 20}]}>Filters</Text>
@@ -105,7 +192,6 @@ const filterRecipes = () => {
                   maxLength={4}
               />
             </View>
-            <Button title='submit' onPress={() => filterRecipes}/>
           </View>
         </View>
       </View>
