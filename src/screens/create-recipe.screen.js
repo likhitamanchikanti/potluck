@@ -10,7 +10,8 @@ import axios from 'axios';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {createRecipeScreenStyles as styles} from '../styles/create-recipe.screen.styles';
 
-export const CreateRecipeScreen = ({ navigation }) => { 
+export const CreateRecipeScreen = ({ navigation }) => {
+    const [userID, setUserID] = useState('');
     const [recipeTitle, setRecipeTitle] = useState('');
     const [recipeDescription, setRecipeDescription] = useState('');
     const [prepTime, setPrepTime] = useState('');
@@ -25,8 +26,11 @@ export const CreateRecipeScreen = ({ navigation }) => {
     const [ingredients, setIngredient] = useState('');
     const [steps, setStep] = useState('');
     const [images, setImages] = useState([]);
+    const [imageLink, setImageLink] = useState('');
+
     
     const [data, setData] = useState({ 
+        userID: '',
         recipeTitle: '', 
         recipeDescription: '', 
         prepTime: '',
@@ -34,7 +38,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
         diet: [],
         ingredients: '',
         steps: '',
-        images: []
+        images: [],
+        imageLink: ''
     });
 
     const handleDetailsChange = (field, value) => {
@@ -131,8 +136,16 @@ export const CreateRecipeScreen = ({ navigation }) => {
 
     addRecipe = () => {
         const recipe = {
+            userID,
             recipeTitle,
-            cookTime
+            recipeDescription,
+            prepTime,
+            cookTime,
+            diet,
+            ingredients,
+            steps,
+            images,
+            imageLink
         }
 
         axios.post('http://localhost:8080/', recipe)
@@ -146,6 +159,13 @@ export const CreateRecipeScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <Text style={styles.title}>Create Recipe</Text>
                 <View>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="User ID"
+                        value={userID}
+                        onChangeText={setUserID}
+                        maxLength={80}
+                        />
                     <TextInput
                         style={styles.input}
                         placeholder="Recipe Title"
@@ -223,6 +243,14 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         value={steps}
                         onChangeText={setStep}
                     />
+
+                    <TextInput
+                        multiline
+                        style={styles.inputMultiline}
+                        placeholder="Image Link"
+                        value={imageLink}
+                        onChangeText={setImageLink}
+                        />
                 </View>
                 {images.length > 0 ? ( 
                     <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}> 
@@ -251,6 +279,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         <Button onPress={() => {
                             addRecipe();
 
+                            console.log("user id: " + JSON.stringify(userID));
                             console.log("title: " + JSON.stringify(recipeTitle));
                             console.log("description: " + JSON.stringify(recipeDescription));
                             console.log("prep: " + JSON.stringify(prepTime));
@@ -259,9 +288,11 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             console.log("ingredients: " + JSON.stringify(ingredients));
                             console.log("steps: " + JSON.stringify(steps));
                             console.log("images: " + JSON.stringify(images));
+                            console.log("image link: " + JSON.stringify(imageLink));
 
                             setData({
                                 ...data,
+                                userID: userID,
                                 recipeTitle: recipeTitle,
                                 recipeDescription: recipeDescription,
                                 prepTime: prepTime,
@@ -269,7 +300,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
                                 diet: diet,
                                 ingredients: ingredients,
                                 steps: steps,
-                                images: images
+                                images: images,
+                                imageLink: imageLink
                             });
                             console.log("data: " + JSON.stringify(data));
                             
@@ -283,6 +315,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                 {submitted ? (
                     <View style={{flexDirection: 'column'}}>
                         <Text>
+                            UserID: {data.userID}{'\n'}
                             Recipe Title: {data.recipeTitle}{'\n'}
                             Recipe Description: {data.recipeDescription}{'\n'}
                             Prep Time: {data.prepTime}{'\n'}
@@ -297,6 +330,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         <Text>
                             Ingredients: {data.ingredients}{'\n'}
                             Steps: {data.steps}{'\n'}
+                            Image Link: {data.imageLink}{'\n'}
                             Images: {data.images.length > 0 ? (<View>{data.images.at(0).width}</View>) : (<View></View>)}
                         </Text>
                     </View>

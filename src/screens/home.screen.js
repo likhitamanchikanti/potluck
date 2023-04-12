@@ -42,10 +42,19 @@ const getRecipes = () => {
       <View style={{flexDirection: 'column'}}>
         {recipes.map((recipe) => (
           // the recipe title should def not be a key, just leaving this as a placeholder
-          <div className='card' key={recipe.title}> 
+          <div className='card'> 
             <Text>
-              Recipe Title: {recipe.title}{'\n'}
-              Cook Time: {recipe.cooktime}{'\n'}{'\n'}
+              UserID: {recipe.UserID}{'\n'}{'\n'}
+              Recipe Title: {recipe.RecipeTitle}{'\n'}{'\n'}
+              Recipe Description: {recipe.RecipeDescription}{'\n'}{'\n'}
+              Prep Time: {recipe.PrepTime}{'\n'}{'\n'}
+              Cook Time: {recipe.CookTime}{'\n'}{'\n'}
+              Diet: {recipe.Diet}{'\n'}{'\n'}
+              Ingredients: {'\n'} 
+              {recipe.Ingredients}{'\n'}{'\n'}
+              Steps: {'\n'} 
+              {recipe.Steps}{'\n'}{'\n'}
+              <img src={recipe.Image}></img>{'\n'}{'\n'}
             </Text> 
           </div>
       ))}
