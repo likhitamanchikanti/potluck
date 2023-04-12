@@ -10,7 +10,7 @@ const appDirectory = path.resolve(__dirname, '../');
 // errors. To fix this webpack can be configured to compile to the necessary
 // `node_module`.
 const babelLoaderConfiguration = {
-  test: /\.(js)|(jsx)|(ts)$/,
+  test: /\.(js)|(jsx)|(ts)|(tsx)$/,
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
     path.resolve(appDirectory, 'index.web.js'),
@@ -18,6 +18,7 @@ const babelLoaderConfiguration = {
     path.resolve(appDirectory, 'src'),
     path.resolve(appDirectory, 'node_modules/react-native-uncompiled'),
     path.resolve(appDirectory, 'node_modules/react-native-image-picker'),
+    path.resolve(appDirectory, 'node_modules/react-native-dropdown-select-list'),
     // path.resolve(appDirectory, 'node_modules/react-native-vector-icons'),
   ],
   use: {
@@ -92,7 +93,7 @@ module.exports = {
     // If you're working on a multi-platform React Native app, web-specific
     // module implementations should be written in files using the extension
     // `.web.js`.
-    extensions: ['.web.js', '.js', '.jsx', '.ts'],
+    extensions: ['.web.js', '.js', '.jsx', '.ts', '.tsx'],
   },
 
   plugins: [

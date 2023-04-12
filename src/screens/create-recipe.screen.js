@@ -4,10 +4,11 @@ import React, {useEffect, useState} from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HeaderComponent } from "../components/header.component";
 import Select from "react-select";
+import {SelectList} from 'react-native-dropdown-select-list';
+import axios from 'axios';
 // import { TouchableOpacity } from "react-native-web";
 import {launchImageLibrary} from 'react-native-image-picker';
 import {createRecipeScreenStyles as styles} from '../styles/create-recipe.screen.styles';
-import axios from 'axios';
 
 export const CreateRecipeScreen = ({ navigation }) => {
     const [userID, setUserID] = useState('');
@@ -15,12 +16,12 @@ export const CreateRecipeScreen = ({ navigation }) => {
     const [recipeDescription, setRecipeDescription] = useState('');
     const [prepTime, setPrepTime] = useState('');
     const [cookTime, setCookTime] = useState('');
-    const [diet, setDiet] = useState([]);
+    const [diet, setDiet] = useState('');
     const [dietOptions, setDietOptions] = useState([
-        { value: 'vegetarian', label: 'Vegetarian' },
-        { value: 'vegan', label: 'Vegan' },
-        { value: 'glutenFree', label: 'Gluten Free' },
-        { value: 'pescetarian', label: 'Pescetarian' }
+        { key: 1, value: 'Vegetarian' },
+        { key: 2, value: 'Vegan' },
+        { key: 3, value: 'Gluten Free' },
+        { key: 4, value: 'Pescetarian' }
     ]);    
     const [ingredients, setIngredient] = useState('');
     const [steps, setStep] = useState('');
@@ -214,12 +215,17 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             </TouchableOpacity>
                         </View> */}
                         <View style={styles.dietSelect}>
-                            <Select 
+                            {/* <Select 
                                 options={dietOptions} 
                                 isMulti
                                 isSearchable
                                 // onSelect={setDietOptions}
                                 onSelect={handleDietChange}
+                            /> */}
+                            <SelectList 
+                                setSelected={(val) => setDiet(val)} 
+                                data={dietOptions} 
+                                save="value"
                             />
                         </View>
                     </View>
@@ -278,7 +284,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             console.log("description: " + JSON.stringify(recipeDescription));
                             console.log("prep: " + JSON.stringify(prepTime));
                             console.log("cook: " + JSON.stringify(cookTime));
-                            console.log("diet: " + diet.map((dietItem) => JSON.stringify(dietItem)));
+                            console.log("diet: " + JSON.stringify(diet));
                             console.log("ingredients: " + JSON.stringify(ingredients));
                             console.log("steps: " + JSON.stringify(steps));
                             console.log("images: " + JSON.stringify(images));
@@ -315,7 +321,6 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             Prep Time: {data.prepTime}{'\n'}
                             Cook Time: {data.cookTime}{'\n'}
                             Diet: {data.diet}{'\n'}
-
                         </Text>
                         {/* {diet.map((dietItem) => {
                             <Text>
