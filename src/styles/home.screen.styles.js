@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { color } from '../config/global.styles.config';
 
 export const homeScreenStyles = StyleSheet.create({
   app: {
@@ -28,5 +29,24 @@ export const homeScreenStyles = StyleSheet.create({
   },
   code: {
     fontFamily: "monospace, monospace"
-  }
+  },
+  tileContainer: {
+    flexDirection: 'row',
+    paddingBottom: 50,
+    paddingLeft: 50,
+  },
+  tile: {
+    backgroundColor: color.lightGreen,
+    height: 200,
+    width: 850,
+    padding: 50,
+    justifyContent: 'space-between',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    borderColor: color.blue,
+    padding: 10,
+  },
 });
