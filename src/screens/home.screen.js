@@ -58,7 +58,7 @@ const filterRecipes = () => {
     <ScrollView>
       <HeaderComponent/>
       <View style={{padding: '30px'}}/>
-      <View style={{flex: 1, flexDirection: 'row'}}>
+      <View style={{flex: 1, flexDirection: 'row'}}> 
         <View style={{flexDirection: 'column'}}>
             {!maxCook && !minCook? (
           <View style={{flexDirection: 'column'}}>
@@ -170,7 +170,7 @@ const filterRecipes = () => {
           // <RecipeList feed={recipes.filter((r) => Number(r.cooktime) >= minCook && Number(r.cooktime) <= maxCook).map(({title, cooktime}) => ({title, cooktime}))}/>
         )}
 
-          </View>
+          </View> 
         <View style={{paddingLeft: 50}}/>
         <View style={{flexDirection: 'column'}}>
           <Text style={[styles.title, {textAlign: 'left', marginVertical: 0, paddingBottom: 20}]}>Filters</Text>
@@ -195,6 +195,26 @@ const filterRecipes = () => {
           </View>
         </View>
       </View>
+      <View style={{flexDirection: 'column'}}>
+        {recipes.map((recipe) => (
+          // the recipe title should def not be a key, just leaving this as a placeholder
+          <div className='card'> 
+            <Text>
+              UserID: {recipe.UserID}{'\n'}{'\n'}
+              Recipe Title: {recipe.RecipeTitle}{'\n'}{'\n'}
+              Recipe Description: {recipe.RecipeDescription}{'\n'}{'\n'}
+              Prep Time: {recipe.PrepTime}{'\n'}{'\n'}
+              Cook Time: {recipe.CookTime}{'\n'}{'\n'}
+              Diet: {recipe.Diet}{'\n'}{'\n'}
+              Ingredients: {'\n'} 
+              {recipe.Ingredients}{'\n'}{'\n'}
+              Steps: {'\n'} 
+              {recipe.Steps}{'\n'}{'\n'}
+              <img src={recipe.Image}></img>{'\n'}{'\n'}
+            </Text> 
+          </div>
+      ))}
+    </View>
     </ScrollView>
   );
 };
