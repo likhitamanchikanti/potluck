@@ -32,7 +32,7 @@ export const ProfileScreen = ({ navigation }) => {
             </Text>
           </View>
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <View style={{flexDirection: 'column'}}>
             <Text style={styles.title}>Recipes</Text>
             {/** TODO: display recipes by pulling from repository / calling recipe obj */}

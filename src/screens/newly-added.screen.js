@@ -9,7 +9,7 @@ import {homeScreenStyles as styles} from '../styles/home.screen.styles';
 import { useEffect } from "react";
 import { useState } from "react";
 
-export const HomeScreen = ({ navigation }) => {
+export const NewlyAddedScreen = ({ navigation }) => {
   const [recipes, setRecipes] = useState([]);
   const [minCook, setMinCook] = useState();
   const [maxCook, setMaxCook] = useState();

@@ -200,28 +200,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         <Text>
                             Diet
                         </Text>
-                        {/* <View>
-                            <TouchableOpacity onPress={handleDietChange("Vegetarian")}>
-                                <Text>Vegetarian</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={handleDietChange("Vegan")}>
-                                <Text>Vegan</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={handleDietChange("Gluten Free")}>
-                                <Text>Gluten Free</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={handleDietChange("Pescetarian")}>
-                                <Text>Pescetarian</Text>
-                            </TouchableOpacity>
-                        </View> */}
                         <View style={styles.dietSelect}>
-                            {/* <Select 
-                                options={dietOptions} 
-                                isMulti
-                                isSearchable
-                                // onSelect={setDietOptions}
-                                onSelect={handleDietChange}
-                            /> */}
                             <SelectList 
                                 setSelected={(val) => setDiet(val)} 
                                 data={dietOptions} 
@@ -252,31 +231,9 @@ export const CreateRecipeScreen = ({ navigation }) => {
                         onChangeText={setImageLink}
                         />
                 </View>
-                {images.length > 0 ? ( 
-                    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}> 
-                        {images.map((img) => (
-                            <View>
-                                {/* TODO: images are not displaying after uploading */}
-                                <Image 
-                                    source={{uri: img.uri}}
-                                    style={styles.imageStyle}
-                                    // width={img.width}
-                                    // height={img.height}
-                                />
-                                {/* <Button onPress={removeFile(img.uri)} title="Remove photo"/> //idk how to do this urgh */}
-                            </View>
-                        ))}
-                    </View>
-                    ) : (
-                    <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}> 
-                    </View>
-                )} 
-                <View style={styles.buttons}>
+                <View style={[styles.buttons, {paddingBottom: 30}]}>
                     <View style={styles.buttons}>
-                        <Button onPress={chooseFile} title="Upload photo" />
-                    </View>
-                    <View style={styles.buttons}>
-                        <Button onPress={() => {
+                        <Button title="Submit" onPress={() => {
                             addRecipe();
 
                             console.log("user id: " + JSON.stringify(userID));
@@ -289,54 +246,9 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             console.log("steps: " + JSON.stringify(steps));
                             console.log("images: " + JSON.stringify(images));
                             console.log("image link: " + JSON.stringify(imageLink));
-
-                            setData({
-                                ...data,
-                                userID: userID,
-                                recipeTitle: recipeTitle,
-                                recipeDescription: recipeDescription,
-                                prepTime: prepTime,
-                                cookTime: cookTime,
-                                diet: diet,
-                                ingredients: ingredients,
-                                steps: steps,
-                                images: images,
-                                imageLink: imageLink
-                            });
-                            console.log("data: " + JSON.stringify(data));
-                            
-                            onSubmit
-                            setSubmitted(true);
-                            }} 
-                            title="Submit"
-                        />
+                        }}/>
                     </View>
                 </View>
-                {submitted ? (
-                    <View style={{flexDirection: 'column'}}>
-                        <Text>
-                            UserID: {data.userID}{'\n'}
-                            Recipe Title: {data.recipeTitle}{'\n'}
-                            Recipe Description: {data.recipeDescription}{'\n'}
-                            Prep Time: {data.prepTime}{'\n'}
-                            Cook Time: {data.cookTime}{'\n'}
-                            Diet: {data.diet}{'\n'}
-                        </Text>
-                        {/* {diet.map((dietItem) => {
-                            <Text>
-                                {dietItem}{' '}
-                            </Text>
-                        })} */}
-                        <Text>
-                            Ingredients: {data.ingredients}{'\n'}
-                            Steps: {data.steps}{'\n'}
-                            Image Link: {data.imageLink}{'\n'}
-                            Images: {data.images.length > 0 ? (<View>{data.images.at(0).width}</View>) : (<View></View>)}
-                        </Text>
-                    </View>
-                ) : (
-                    <View></View>
-                )}
             </View>
         </ScrollView>
     );

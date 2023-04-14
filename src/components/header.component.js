@@ -79,25 +79,28 @@ export const HeaderComponent = () => {
         </View>
             <View style={{height: 50, width: window.width, backgroundColor: color.blue,}}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('NewlyAdded')}>
                         <Text style={styles.tabLink}>Newly Added</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
                         <Text style={styles.tabLink}>Most Loved</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('QuickEasy')}>
                         <Text style={styles.tabLink}>Quick and Easy</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    {/* <TouchableOpacity>
                         <Text style={styles.tabLink}>Low Calorie</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
+                    </TouchableOpacity> */}
+                    {/* <TouchableOpacity onPress={() => navigation.navigate('Testing')}>
+                        <Text style={styles.tabLink}>Testing</Text>
+                    </TouchableOpacity> */}
+                    {/* <TouchableOpacity>
                         <Text style={styles.tabLink}>Budget Friendly</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity>
                         <Text style={styles.tabLink}>Seasonal Ingredients</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Vegan')}>
                         <Text style={styles.tabLink}>Vegan</Text>
                     </TouchableOpacity>
                     <TouchableOpacity>
