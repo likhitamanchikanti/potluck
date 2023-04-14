@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     // backgroundColor: color.lightGreen,
     backgroundColor: 'rgba(0,0,0, 0.30)',
     height: 200,
-    width: 700,
+    width: 600,
     padding: 50,
     justifyContent: 'space-between',
     aspectRatio: 1,
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   backgroundImage: {
     height: 200,
-    width: 700,
+    width: 600,
     justifyContent: 'space-between',
   },
   tileText: {
