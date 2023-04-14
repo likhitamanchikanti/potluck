@@ -5,7 +5,7 @@ import { NewlyAddedScreen } from "./src/screens/newly-added.screen";
 import { ProfileScreen } from "./src/screens/profile.screen";
 import { QuickEasyScreen } from "./src/screens/quick-easy-screen";
 import React from "react";
-import { TestingScreen } from "./src/screens/testing.screen";
+import { RecipeScreen } from "./src/screens/recipe.screen";
 import { VeganScreen } from "./src/screens/vegan-screen";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -18,7 +18,7 @@ export const App = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown: false}}/>
         <Stack.Screen name="CreateRecipe" component={CreateRecipeScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Testing" component={TestingScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="RecipeScreen" component={RecipeScreen} options={{headerShown: false}}/>
         <Stack.Screen name="NewlyAdded" component={NewlyAddedScreen} options={{headerShown: false}}/>
         <Stack.Screen name="QuickEasy" component={QuickEasyScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Vegan" component={VeganScreen} options={{headerShown: false}}/>

@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
 export const RecipeListComponent = ({recipe, navigation}) => {
     return (
       <div className='card' key={recipe.RecipeTitle}> 
-        <TouchableOpacity onPress={() => navigation.navigate('Testing', {currRecipe: recipe})}>
+        <TouchableOpacity onPress={() => navigation.navigate('RecipeScreen', {currRecipe: recipe})}>
           <View style={styles.tileContainer}>
             <ImageBackground source={recipe.Image} style={styles.backgroundImage}>
               <View style={styles.tile}>

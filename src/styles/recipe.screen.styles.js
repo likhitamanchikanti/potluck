@@ -1,15 +1,13 @@
 import {StyleSheet} from 'react-native';
 
-export const TestingScreenStyles = StyleSheet.create({
+export const RecipeScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: "auto",
     maxWidth: 1000,
     backgroundColor: '#FFFFFF',
-    // paddingHorizontal: 20,
     paddingVertical: 100,
     flexWrap: "wrap"
-    // padding: 20,
   },
   image: {
     width: '100%',
@@ -48,6 +46,7 @@ export const TestingScreenStyles = StyleSheet.create({
     borderColor: 'grey',
     padding: 10,
     marginTop: 20,
+    flex: 1, 
     flexShrink: 1,
     flexDirection:'row'
   },
@@ -61,10 +60,9 @@ export const TestingScreenStyles = StyleSheet.create({
   listItem: {
     fontSize: 16,
     marginBottom: 5,
-    flexShrink:1,
     flexWrap: 'wrap',
     maxWidth: '80%',
-    fontFamily: 'Cambria Math', 
+    fontFamily: 'Cambria Math',     
   },
 });
 
