@@ -40,7 +40,7 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/', express.json(), (req,res)=>{
-var records = [[req.body.userID,req.body.recipeTitle,req.body.recipeDescription,req.body.prepTime,req.body.cookTime,req.body.diet,req.body.ingredients,req.body.steps,req.body.imageLink,req.body.numLikes,0]];
+var records = [[req.body.userID,req.body.recipeTitle,req.body.recipeDescription,req.body.prepTime,req.body.cookTime,req.body.diet,req.body.ingredients,req.body.steps,req.body.imageLink,req.body.numLikes,req.body.liked]];
 
 console.log(records)
 if(records[0][0]!=null)
@@ -55,12 +55,10 @@ if(records[0][0]!=null)
 
 //"UPDATE Recipes SET NumLikes = NumLikes + 1 WHERE RecipeTitle = ? AND UserID = ?"
 app.post('/likes', express.json(), (req, res) => {
-  console.log("getting here 1")
   const recipeTitle = req.body.recipeTitle;
   const userID = req.body.userID;
-  console.log("getting here");
   con.query(
-    "UPDATE Recipes SET NumLikes = NumLikes + 1 WHERE RecipeTitle = ? AND UserID = ?",
+    "UPDATE Recipes SET NumLikes = NumLikes + 1, Liked = true WHERE RecipeTitle = ? AND UserID = ?",
     [recipeTitle, userID],
     function (err, result, fields) {
       if (err) throw err;

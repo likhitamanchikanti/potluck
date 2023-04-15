@@ -7,14 +7,15 @@ import axios from 'axios';
 
 export const RecipeScreen = ({ route, navigation }) => {
   const { currRecipe } = route.params;
-  
   incrementLikes = () => {
-    const recipeTitle = currRecipe.recipeTitle;
-    const userID = currRecipe.userID;
+    var recipeTitle = currRecipe.RecipeTitle;
+    var userID = currRecipe.UserID;
+    console.log(recipeTitle);
+    console.log(userID);
     axios.post('http://localhost:8080/likes', {recipeTitle, userID})
       .then(function (response) { console.log(response); })
       .catch(function (error) { console.log(error); });
-  }
+}
   return (
     <ScrollView>
       <HeaderComponent/>
