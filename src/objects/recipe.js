@@ -1,7 +1,7 @@
 import React from "react";
 
 export class recipe{
-    constructor(recipeTitle, recipeDescription, prepTime, cookTime, ingredients, steps, diet){
+    constructor(recipeTitle, recipeDescription, prepTime, cookTime, ingredients, steps, diet, numLikes){
         this.recipeTitle = recipeTitle; 
         this.recipeDescription = recipeDescription; 
         this.prepTime = prepTime; 
@@ -9,5 +9,6 @@ export class recipe{
         this.ingredients = ingredients; 
         this.steps = steps; 
         this.diet = diet; 
+        this.numLikes = numLikes;
     }
 };

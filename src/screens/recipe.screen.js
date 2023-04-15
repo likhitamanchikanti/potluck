@@ -1,11 +1,20 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {Button, Image, StyleSheet, Text, View } from 'react-native';
 
 import { HeaderComponent } from '../components/header.component';
 import { ScrollView } from 'react-native-web';
 import { RecipeScreenStyles as styles } from '../styles/recipe.screen.styles';
+import axios from 'axios';
 
 export const RecipeScreen = ({ route, navigation }) => {
   const { currRecipe } = route.params;
+  
+  incrementLikes = () => {
+    const recipeTitle = currRecipe.recipeTitle;
+    const userID = currRecipe.userID;
+    axios.post('http://localhost:8080/likes', {recipeTitle, userID})
+      .then(function (response) { console.log(response); })
+      .catch(function (error) { console.log(error); });
+  }
   return (
     <ScrollView>
       <HeaderComponent/>
@@ -26,9 +35,19 @@ export const RecipeScreen = ({ route, navigation }) => {
               <Text style={styles.infoItem}><Text style={{fontWeight: 'bold'}}>Prep Time:</Text> {currRecipe.PrepTime}{'     '}</Text>
               </View>
               <View style={styles.info}>
-              <Text style={styles.infoItem}><Text style={{fontWeight: 'bold'}}>Cook Time:</Text> {currRecipe.CookTime}</Text>
+              <Text style={styles.infoItem}><Text style={{fontWeight: 'bold'}}>Cook Time:</Text> {currRecipe.CookTime}{'     '}</Text>
+              </View>
+              <View style={styles.info}>
+              <Text style={styles.infoItem}><Text style={{fontWeight: 'bold'}}>Likes:</Text> {currRecipe.NumLikes}</Text>
               </View>
             </View>
+            <View style={[styles.buttons, {paddingBottom: 30}]}>
+                    <View style={styles.buttons}>
+                        <Button title="Like" onPress={() => {
+                            incrementLikes();
+                        }}/>
+                    </View>
+                </View>
           </View>
         </View>
       <View style={styles.ingredientsContainer}>

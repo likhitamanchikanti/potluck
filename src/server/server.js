@@ -40,18 +40,35 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/', express.json(), (req,res)=>{
-var records = [[req.body.userID,req.body.recipeTitle,req.body.recipeDescription,req.body.prepTime,req.body.cookTime,req.body.diet,req.body.ingredients,req.body.steps,req.body.imageLink,'0']];
+var records = [[req.body.userID,req.body.recipeTitle,req.body.recipeDescription,req.body.prepTime,req.body.cookTime,req.body.diet,req.body.ingredients,req.body.steps,req.body.imageLink,req.body.numLikes,0]];
 
 console.log(records)
 if(records[0][0]!=null)
 {
-  con.query("INSERT into Recipes (UserID,RecipeTitle,RecipeDescription,PrepTime,CookTime,Diet,Ingredients,Steps,Image,NumLikes) VALUES ?",[records],function(err,res,fields){
+  con.query("INSERT into Recipes (UserID,RecipeTitle,RecipeDescription,PrepTime,CookTime,Diet,Ingredients,Steps,Image,NumLikes,Liked) VALUES ?",[records],function(err,res,fields){
     if(err) throw err;
     console.log(res);
   });
 }
 
 })
+
+//"UPDATE Recipes SET NumLikes = NumLikes + 1 WHERE RecipeTitle = ? AND UserID = ?"
+app.post('/likes', express.json(), (req, res) => {
+  console.log("getting here 1")
+  const recipeTitle = req.body.recipeTitle;
+  const userID = req.body.userID;
+  console.log("getting here");
+  con.query(
+    "UPDATE Recipes SET NumLikes = NumLikes + 1 WHERE RecipeTitle = ? AND UserID = ?",
+    [recipeTitle, userID],
+    function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+    }
+  );
+});
+  
 
 app.listen(8080,()=>{
   console.log("Port 8080");

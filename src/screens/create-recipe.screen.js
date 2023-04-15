@@ -27,6 +27,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
     const [steps, setStep] = useState('');
     const [images, setImages] = useState([]);
     const [imageLink, setImageLink] = useState('');
+    const [numLikes,setNumLikes] = useState(0);
 
     
     const [data, setData] = useState({ 
@@ -39,7 +40,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
         ingredients: '',
         steps: '',
         images: [],
-        imageLink: ''
+        imageLink: '',
+        numLikes: 0
     });
 
     const handleDetailsChange = (field, value) => {
@@ -145,10 +147,11 @@ export const CreateRecipeScreen = ({ navigation }) => {
             ingredients,
             steps,
             images,
-            imageLink
+            imageLink,
+            numLikes
         }
 
-        axios.post('http://localhost:8080/', recipe)
+        axios.post('http://localhost:8080/submit', recipe)
         .then(function (response) { console.log(response); })
         .catch(function (error) { console.log(error); });
     }
@@ -234,6 +237,8 @@ export const CreateRecipeScreen = ({ navigation }) => {
                 <View style={[styles.buttons, {paddingBottom: 30}]}>
                     <View style={styles.buttons}>
                         <Button title="Submit" onPress={() => {
+                            numLikes.val = 0;
+                            setNumLikes;
                             addRecipe();
 
                             console.log("user id: " + JSON.stringify(userID));
@@ -246,6 +251,7 @@ export const CreateRecipeScreen = ({ navigation }) => {
                             console.log("steps: " + JSON.stringify(steps));
                             console.log("images: " + JSON.stringify(images));
                             console.log("image link: " + JSON.stringify(imageLink));
+                            console.log("num likes: " + JSON.stringify(numLikes));
                         }}/>
                     </View>
                 </View>
