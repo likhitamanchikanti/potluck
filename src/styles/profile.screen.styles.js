@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export const profileScreenStyles = StyleSheet.create({
   app: {
     flex: 1, 
-    marginHorizontal: "auto",
+    // marginHorizontal: "auto",
     flexWrap: true,
     padding: 20,
   },
