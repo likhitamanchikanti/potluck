@@ -1,9 +1,9 @@
-import {Button, Image, StyleSheet, Text, View } from 'react-native';
+import {Button, Image, StyleSheet, Text, View} from 'react-native';
 
 import { HeaderComponent } from '../components/header.component';
 import { ScrollView } from 'react-native-web';
-import { RecipeScreenStyles as styles } from '../styles/recipe.screen.styles';
 import axios from 'axios';
+import { RecipeScreenStyles as styles } from '../styles/recipe.screen.styles';
 
 export const RecipeScreen = ({ route, navigation }) => {
   const { currRecipe } = route.params;
@@ -15,6 +15,7 @@ export const RecipeScreen = ({ route, navigation }) => {
     axios.post('http://localhost:8080/likes', {recipeTitle, userID})
       .then(function (response) { console.log(response); })
       .catch(function (error) { console.log(error); });
+    window.location.reload(false);
 }
   return (
     <ScrollView>

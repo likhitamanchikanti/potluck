@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { ImageBackground } from "react-native-web";
 import React from "react";
@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     textAlign: "center"
   },
   tileContainer: {
+    flex: 1,
     flexDirection: 'row',
     paddingBottom: 50,
     paddingLeft: 50,
@@ -35,12 +36,19 @@ export const styles = StyleSheet.create({
   tileText: {
     color: color.white, 
     textShadowColor: color.black, 
-    textShadowOffset: {width: -2, height: 2}, 
+    textShadowOffset: {width: -1, height: 1}, 
     textShadowRadius: 5,
+  },
+  pfp: {
+    width: 15,
+    height: 15,
+    resizeMode: 'contain',
+    tintColor: color.white,
   },
 });
 
 export const RecipeListComponent = ({recipe, navigation}) => {
+  const pic = require('../assets/heart-icon.png');
     return (
       <div className='card' key={recipe.RecipeTitle}> 
         <TouchableOpacity onPress={() => navigation.navigate('RecipeScreen', {currRecipe: recipe})}>
@@ -68,9 +76,15 @@ export const RecipeListComponent = ({recipe, navigation}) => {
                     {recipe.CookTime}{'\n'}{'\n'}
                   </Text> 
                 </View>
-                <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-                  <View style={{borderWidth: 3, borderColor: color.white, padding: 5}}>
-                    <Text style={[styles.tileText]}>{recipe.Diet}</Text>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <View style={{borderWidth: 3, borderColor: color.white, alignSelf:'flex-start'}}>
+                    <Text style={[styles.tileText, {padding: 5}]}>{recipe.Diet}</Text>
+                  </View>
+                  <View style={{flexDirection: 'row', alignSelf: 'flex-end'}}>
+                    <Image source={pic} style={[styles.pfp]}/>
+                    <Text style={[styles.tileText, {paddingLeft: 5}]}>
+                      {recipe.NumLikes}{'\n'}{'\n'}
+                    </Text> 
                   </View>
                 </View>
               </View>
