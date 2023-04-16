@@ -65,7 +65,9 @@ export const ProfileScreen = ({ navigation }) => {
           <View style={{flexDirection: 'column', flex: 0.5 }}>
             <Text style={styles.title}>Favorites</Text>
             {/** TODO: display favorites by pulling from repository / calling favorites obj */}
-            {recipes.map((recipe) => (
+            {recipes.filter((r) => r.Liked > 0)
+              .map(({UserID, RecipeTitle, RecipeDescription, PrepTime, CookTime, Diet, Image, Ingredients, Steps, NumLikes,Liked}) => ({UserID, RecipeTitle, RecipeDescription, PrepTime, CookTime, Diet, Image, Ingredients, Steps,NumLikes,Liked}))
+              .map((recipe) => (
               <View>
                 <RecipeListComponent recipe={recipe} navigation={navigation} key={recipe.RecipeTitle}/>
               </View>
