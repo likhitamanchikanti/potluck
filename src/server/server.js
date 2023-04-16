@@ -39,7 +39,7 @@ app.get('/',(req,res)=>{
 
 })
 
-app.post('/', express.json(), (req,res)=>{
+app.post('/submit', express.json(), (req,res)=>{
 var records = [[req.body.userID,req.body.recipeTitle,req.body.recipeDescription,req.body.prepTime,req.body.cookTime,req.body.diet,req.body.ingredients,req.body.steps,req.body.imageLink,req.body.numLikes,req.body.liked]];
 
 console.log(records)
