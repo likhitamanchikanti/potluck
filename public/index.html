@@ -20,6 +20,13 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+		<!-- Include the Google Sign-In API script -->
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+	  
+		<!-- Set the Google Sign-In client ID -->
+		<meta name="google-signin-client_id" content="807520507623-g21h6m1i9l0ppqv6efre16bv8158ab4t.apps.googleusercontent.com">
+
 	<title>React App</title>
 <style>
 	/* These styles make the body full-height */
@@ -40,6 +47,20 @@
 </head>
 
 <body>
+	<!-- Add the Google Sign-In button -->
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+  
+	<!-- Implement the sign-in function -->
+	<script>
+	  function onSignIn(googleUser) {
+		// Get the user's ID token and basic profile information
+		var id_token = googleUser.getAuthResponse().id_token;
+		var profile = googleUser.getBasicProfile();
+  
+		// Send the ID token and profile information to your server for authentication
+	  }
+	</script>
+
 	<noscript>
 		You need to enable JavaScript to run this app.
 	</noscript>
