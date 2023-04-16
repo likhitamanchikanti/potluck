@@ -82,29 +82,23 @@ export const HeaderComponent = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('NewlyAdded')}>
                         <Text style={styles.tabLink}>Newly Added</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('MostLoved')}>
                         <Text style={styles.tabLink}>Most Loved</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('QuickEasy')}>
                         <Text style={styles.tabLink}>Quick and Easy</Text>
                     </TouchableOpacity>
-                    {/* <TouchableOpacity>
-                        <Text style={styles.tabLink}>Low Calorie</Text>
-                    </TouchableOpacity> */}
-                    {/* <TouchableOpacity onPress={() => navigation.navigate('Testing')}>
-                        <Text style={styles.tabLink}>Testing</Text>
-                    </TouchableOpacity> */}
-                    {/* <TouchableOpacity>
-                        <Text style={styles.tabLink}>Budget Friendly</Text>
-                    </TouchableOpacity> */}
-                    <TouchableOpacity>
-                        <Text style={styles.tabLink}>Seasonal Ingredients</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Vegan')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Diet', {diet: 'Vegan'})}>
                         <Text style={styles.tabLink}>Vegan</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text style={styles.tabLink}>High Protein</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Diet', {diet: 'Vegetarian'})}>
+                        <Text style={styles.tabLink}>Vegetarian</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Diet', {diet: 'Gluten Free'})}>
+                        <Text style={styles.tabLink}>Gluten Free</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Diet', {diet: 'Pescetarian'})}>
+                        <Text style={styles.tabLink}>Pescetarian</Text>
                     </TouchableOpacity>
                 </View>
             </View>
