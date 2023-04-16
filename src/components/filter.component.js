@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: color.blue,
     padding: 10,
+    borderRadius: 25,
   },
 });
 
@@ -25,7 +26,7 @@ export const FilterComponent = ({minCook, setMinCook, maxCook, setMaxCook}) => {
         <View>
             <View style={{flexDirection: 'column', width: 300,}}>
             <Text style={[styles.title, {textAlign: 'left', marginVertical: 0, paddingBottom: 20}]}>Filters</Text>
-            <View style={{padding: 10, borderWidth: 1, height: 100, borderColor: color.blue}}>
+            <View style={{padding: 20, borderWidth: 1, borderRadius: 25, height: 120, borderColor: color.blue}}>
                 <Text style={{fontWeight: 'bold'}}>Total Time:</Text>
                 <View style={{flexDirection: 'row'}}>
                 <TextInput

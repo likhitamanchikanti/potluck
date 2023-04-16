@@ -43,7 +43,7 @@ export const NewlyAddedScreen = ({ navigation }) => {
           ) : !maxCook? (
             <View style={{flexDirection: 'column'}}>
               {recipes.filter((r) => (Number(r.CookTime) + Number(r.PrepTime)) >= minCook)
-              .map(({UserID, RecipeTitle, RecipeDescription, PrepTime, CookTime, Diet, Image, Ingredients, Steps,Liked}) => ({UserID, RecipeTitle, RecipeDescription, PrepTime, CookTime, Diet, Image, Ingredients, Steps, NumLikes,Liked}))
+              .map(({UserID, RecipeTitle, RecipeDescription, PrepTime, CookTime, Diet, Image, Ingredients, Steps, NumLikes,Liked}) => ({UserID, RecipeTitle, RecipeDescription, PrepTime, CookTime, Diet, Image, Ingredients, Steps, NumLikes,Liked}))
               .map((recipe) => (
                 <RecipeListComponent recipe={recipe} navigation={navigation} key={recipe.RecipeTitle}/>
               ))}
