@@ -10,7 +10,7 @@ var mysql = require('mysql');
  
 // create a connection variable with the required details
 var con = mysql.createConnection({
-  host: "potluckdb.cd044sl1pqug.us-east-1.rds.amazonaws.com", // ip address of server running mysql
+  host: "potluckdatabase.cnwv3cy956yw.us-east-1.rds.amazonaws.com", // new ip address of server running mysql
   user: "admin", // user name to your mysql database
   password: "potluck123", // corresponding password
   database: "potluckdatabase" // use the specified database
